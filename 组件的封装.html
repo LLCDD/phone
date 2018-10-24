@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.min.js"></script>
+</head>
+<style>
+.box{
+    height: 100px
+    ;
+    width: 100px;
+    background: red;
+    margin: 0 auto;
+}
+
+</style>
+<body>
+    <div id="app">
+        <button @click="top()">点我出来弹框</button>
+        <toast></toast>
+    </div>
+    
+    <template id="box">
+        <div  v-if="bool" class="box">
+            {{ title }}
+        </div>
+    </template>
+
+</body>
+
+</html>
+<script>
+        var  Toast = Vue.component(toast, {
+                 template:"#box",
+                 data(){
+                     return {
+                         title:"登陆呀",
+                         bool:"true",
+                         time:1000,
+                     }
+                 }
+            })
+
+         var toast = function(){
+             let ToastVue = new Toast({
+                 el:document.createElement('div')
+             })
+             document.body.appendChild(ToastVue.$el);
+             setTimeout(function(){
+                 ToastVue.bool = false
+             },ToastVue.time)
+         }
+        //  上面是封装的部分------------------------------------------------------------
+    //  -------------------------------------------------------------------------------------
+
+
+
+         var vm = new Vue({
+             el:"#app",
+             data:{
+     
+             }
+             ,methods:{
+                 top(){
+                     toast();
+                 }
+             }
+         })
+     </script>

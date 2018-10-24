@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.min.js"></script>
+    <script src="./vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>路由</h1>
+
+        <router-link to="/login">登陆</router-link>
+        <router-link to="/zhuce">注册</router-link>
+        <router-link to="/xaingqing">详情</router-link>
+
+        <router-view></router-view>
+
+    </div>
+
+    <template id="login">
+        <h1>登陆</h1>
+    </template>
+
+    <template id="zhuce">
+        <h1>注册</h1>
+    </template>
+
+    <template id="xaingqing">
+        <h1>详情</h1>
+    </template>
+</body>
+<script>
+    var login = {
+        template:"#login"
+    };
+    var zhuce = {
+        template:"#zhuce"
+    };
+    var xiangqing = {
+        template:"#xaingqing"
+    }
+
+    var router = new VueRouter({
+        routes: [
+            {path :"/login" ,component:login},
+            { path: '/zhuce', component: zhuce },
+            { path: '/xaingqing', component: xiangqing }
+        ]
+    })
+    var vm = new Vue({
+        el:"#app",
+        data:{
+
+        },
+        router
+    })
+</script>
+</html>

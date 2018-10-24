@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./animate.css">
+    <script src="./vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>过度</h1>
+
+        <button @click="view='login'">AAAA</button>
+        <button @click="view='login1'">BBBB</button>
+        <!-- <login></login>
+        <login1></login1> -->
+
+        <transition
+            enter-active-class="animated bounceInLeft"
+            leave-active-class="animated bounceOutRight"
+        
+        >
+            <component :is="view"> </component>
+        
+        
+        </transition>
+
+    </div>
+    <template id="a">
+        <div>
+        <h1>AAAA --- {{ msg }}</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum tenetur expedita magnam vitae ex sed quis eum quibusdam magni vero officiis enim cum doloremque totam cupiditate, eius et impedit aperiam?</p>
+    </div>
+</template>
+
+    <template id="b">
+        <div>
+        <h1>BBBB--{{ msg }}</h1>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum at porro ipsa impedit voluptas delectus unde tenetur quod sequi. Fugit, quidem? Suscipit enim laboriosam laudantium incidunt nobis quisquam accusamus unde?</p>
+    </div>
+    </template>
+
+</body>
+<script>
+    var login = {
+        template:"#a",
+        data(){
+            return {
+                msg:"AAAA"
+            }
+        }
+    };
+
+    var login1 = {
+        template:"#b",
+        data(){
+            return {
+                msg:"BBBB"
+            }
+        }
+    };
+
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            "view":"login"
+        },
+        methods: {
+            
+        },
+        components:{
+            login,
+            login1
+        }
+    })
+</script>
+</html>
